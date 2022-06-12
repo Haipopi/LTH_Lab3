@@ -1,6 +1,10 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Mine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Mine</h2>
 
 <ul class="course">
     @foreach (var course in Model)
@@ -9,7 +13,6 @@
             <div class="date">
                 <div class="month">
                     @course.DateTime.ToString("MM")
-
                 </div>
                 <div class="day">
                     @course.DateTime.ToString("dd")
@@ -18,19 +21,14 @@
             <div class="details">
                 <span class="lecturer">
                     @course.Lecturer.Name
-                    @if (Model.ShowAction)
-                    {
-                        <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
-                    }
                 </span>
                 <span class="category">
                     @course.Category.Name
                 </span>
-                @if (Model.ShowAction)
-                {
-                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
-                }
-
+            </div>
+            <div class="action">
+                <a href="@Url.Action("Edit","Courses", new { id = course.Id })">Edit</a> |
+                <a href="#" class="js-cancel-course" data-course-id="@course.Id">Cancel</a>
             </div>
         </li>
     }

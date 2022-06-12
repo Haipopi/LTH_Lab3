@@ -10,6 +10,8 @@ namespace L3.Models
     {
         public int Id { get; set; }
 
+        public bool IsCanceled { get; set; }
+
         public ApplicationUser Lecturer { get; set; }
         [Required]
         public string LecturerId { get; set; }
@@ -17,6 +19,7 @@ namespace L3.Models
         [StringLength(255)]
         public string Place { get; set; }
         public DateTime Datetime { get; set; }
+        public DateTime DateTime { get; internal set; }
         public Category Category { get; set; }
         [Required]
         public byte CategoryId { get; set; }
